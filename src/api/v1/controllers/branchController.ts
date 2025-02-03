@@ -10,7 +10,7 @@ export const controllerGetAllBranches = async (
 ): Promise<void> => {
     try{
         const branches: Branch[] = await branchService.serviceGetAllBranches();
-        res.status(200).json({message:"branch Retrieved", data: branches});
+        res.status(200).json({message:"Branches Retrieved", data: branches});
     }catch (error){
         next(error);
     }
@@ -60,7 +60,7 @@ export const controllerDeleteBranches = async (
         await branchService.serviceDeleteBranches(req.params.id);
 
        
-        res.status(200).json({ message: "Branch Deleted" });
+        res.status(200).send({ message: "Branch Deleted" });
     } catch (error) {
         next(error);
     }

@@ -39,7 +39,7 @@ export const controllerUpdateBranches = async (
     next: NextFunction
 ): Promise<void> => {
     try {
-        // call the itemService by passing the id from thge url path and the body of the request
+        
         const updatedBranches: Branch = await branchService.serviceUpdateBranches(
             req.params.id,
             req.body

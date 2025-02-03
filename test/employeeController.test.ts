@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import * as employeeController from "../src/api/v1/controllers/employeesController";  
 import * as employeeService from "../src/api/v1/services/employeesService"; 
 
-jest.mock("../src/api/v1/services/employeesService");  // Mock the service module
+jest.mock("../src/api/v1/services/employeesService");  
 
 describe("Employee Controller", () => {
     let mockReq: Partial<Request>;
@@ -10,10 +10,10 @@ describe("Employee Controller", () => {
     let mockNext: NextFunction;
 
     beforeEach(() => {
-        jest.clearAllMocks();  // Clear mocks before each test
-        mockReq = { params: {}, body: {}, query: {} };  // Mock the request object
-        mockRes = { status: jest.fn().mockReturnThis(), json: jest.fn(), send: jest.fn() };  // Mock response methods
-        mockNext = jest.fn();  // Mock the next function (middleware)
+        jest.clearAllMocks();  
+        mockReq = { params: {}, body: {}, query: {} };  
+        mockRes = { status: jest.fn().mockReturnThis(), json: jest.fn(), send: jest.fn() };  
+        mockNext = jest.fn();  
     });
 
     describe("getAllEmployees", () => {
@@ -23,7 +23,7 @@ describe("Employee Controller", () => {
                 { id: "2", name: "Jane Smith", role: "Manager", department: "HR" },
             ];
 
-            (employeeService.serviceGetAllEmployees as jest.Mock).mockResolvedValue(mockEmployees);  // Mock the service method
+            (employeeService.serviceGetAllEmployees as jest.Mock).mockResolvedValue(mockEmployees);  
 
             await employeeController.controllerGetAllEmployees(
                 mockReq as Request,
@@ -31,16 +31,16 @@ describe("Employee Controller", () => {
                 mockNext
             );
 
-            expect(mockRes.status).toHaveBeenCalledWith(200);  // Check if status 200 is returned
+            expect(mockRes.status).toHaveBeenCalledWith(200);  
             expect(mockRes.json).toHaveBeenCalledWith({
                 message: "Employees Retrieved",
                 data: mockEmployees,
-            });  // Verify the response format
+            });  
         });
 
         it("should handle errors in getAllEmployees", async () => {
             const mockError = new Error("Error retrieving employees");
-            (employeeService.serviceGetAllEmployees as jest.Mock).mockRejectedValue(mockError);  // Mock the error
+            (employeeService.serviceGetAllEmployees as jest.Mock).mockRejectedValue(mockError);  
 
             await employeeController.controllerGetAllEmployees(
                 mockReq as Request,
@@ -48,7 +48,7 @@ describe("Employee Controller", () => {
                 mockNext
             );
 
-            expect(mockNext).toHaveBeenCalledWith(mockError);  // Ensure that the error is passed to the next middleware
+            expect(mockNext).toHaveBeenCalledWith(mockError);  
         });
     });
 
@@ -67,9 +67,9 @@ describe("Employee Controller", () => {
                 department: "Design",
             };
 
-            (employeeService.serviceCreateEmployee as jest.Mock).mockResolvedValue(mockEmployee);  // Mock service call
+            (employeeService.serviceCreateEmployee as jest.Mock).mockResolvedValue(mockEmployee);  
 
-            mockReq.body = mockEmployeeData;  // Simulate the request body
+            mockReq.body = mockEmployeeData;  
 
             await employeeController.controllerCreateEmployees(
                 mockReq as Request,
@@ -77,17 +77,17 @@ describe("Employee Controller", () => {
                 mockNext
             );
 
-            expect(employeeService.serviceCreateEmployee).toHaveBeenCalledWith(mockEmployeeData);  // Verify service method call
-            expect(mockRes.status).toHaveBeenCalledWith(201);  // Verify the correct status code for creation
+            expect(employeeService.serviceCreateEmployee).toHaveBeenCalledWith(mockEmployeeData);  
+            expect(mockRes.status).toHaveBeenCalledWith(201);  
             expect(mockRes.json).toHaveBeenCalledWith({
                 message: "Employee Created",
                 data: mockEmployee,
-            });  // Verify the response format
+            });  
         });
 
         it("should handle errors in createEmployee", async () => {
             const mockError = new Error("Error creating employee");
-            (employeeService.serviceCreateEmployee as jest.Mock).mockRejectedValue(mockError);  // Mock error
+            (employeeService.serviceCreateEmployee as jest.Mock).mockRejectedValue(mockError);  
 
             await employeeController.controllerCreateEmployees(
                 mockReq as Request,
@@ -95,13 +95,13 @@ describe("Employee Controller", () => {
                 mockNext
             );
 
-            expect(mockNext).toHaveBeenCalledWith(mockError);  // Ensure the error is passed to next middleware
+            expect(mockNext).toHaveBeenCalledWith(mockError);  
         });
     });
 
     describe("updateEmployee", () => {
         it("should update an employee successfully", async () => {
-            const mockId = "1";  // Simulate employee ID
+            const mockId = "1";  
             const mockUpdatedEmployee = {
                 id: "1",
                 name: "John Doe Updated",
@@ -114,28 +114,27 @@ describe("Employee Controller", () => {
                 department: "Engineering",
             };
 
-            (employeeService.serviceUpdateEmployee as jest.Mock).mockResolvedValue(mockUpdatedEmployee);  // Mock service call
+            (employeeService.serviceUpdateEmployee as jest.Mock).mockResolvedValue(mockUpdatedEmployee);  
 
-            mockReq.params = { id: mockId };  // Simulate employee ID in the request params
-            mockReq.body = updateData;  // Simulate update data in the request body
-
+            mockReq.params = { id: mockId };  
+            mockReq.body = updateData;  
             await employeeController.controllerUpdateEmployees(
                 mockReq as Request,
                 mockRes as Response,
                 mockNext
             );
 
-            expect(employeeService.serviceUpdateEmployee).toHaveBeenCalledWith(mockId, updateData);  // Verify the service call with params and body
-            expect(mockRes.status).toHaveBeenCalledWith(200);  // Verify the correct status code for update
+            expect(employeeService.serviceUpdateEmployee).toHaveBeenCalledWith(mockId, updateData);  
+            expect(mockRes.status).toHaveBeenCalledWith(200);  
             expect(mockRes.json).toHaveBeenCalledWith({
                 message: "Employee Updated",
                 data: mockUpdatedEmployee,
-            });  // Verify response format
+            });  
         });
 
         it("should handle errors in updateEmployee", async () => {
             const mockError = new Error("Error updating employee");
-            (employeeService.serviceUpdateEmployee as jest.Mock).mockRejectedValue(mockError);  // Mock error
+            (employeeService.serviceUpdateEmployee as jest.Mock).mockRejectedValue(mockError);  
 
             await employeeController.controllerUpdateEmployees(
                 mockReq as Request,
@@ -143,17 +142,17 @@ describe("Employee Controller", () => {
                 mockNext
             );
 
-            expect(mockNext).toHaveBeenCalledWith(mockError);  // Ensure the error is passed to next middleware
+            expect(mockNext).toHaveBeenCalledWith(mockError);  
         });
     });
 
     describe("deleteEmployee", () => {
         it("should delete an employee successfully", async () => {
-            const mockId = "1";  // Simulate employee ID
+            const mockId = "1";  
 
-            (employeeService.serviceDeleteEmployee as jest.Mock).mockResolvedValue(undefined);  // Mock successful deletion
+            (employeeService.serviceDeleteEmployee as jest.Mock).mockResolvedValue(undefined);  
 
-            mockReq.params = { id: mockId };  // Simulate employee ID in the request params
+            mockReq.params = { id: mockId };  
 
             await employeeController.controllerDeleteEmployees(
                 mockReq as Request,
@@ -161,14 +160,14 @@ describe("Employee Controller", () => {
                 mockNext
             );
 
-            expect(employeeService.serviceDeleteEmployee).toHaveBeenCalledWith(mockId);  // Verify the service call
-            expect(mockRes.status).toHaveBeenCalledWith(200);  // Verify the correct status code for deletion
-            expect(mockRes.send).toHaveBeenCalledWith({ message: "Employee Deleted" });  // Verify the response message
+            expect(employeeService.serviceDeleteEmployee).toHaveBeenCalledWith(mockId);  
+            expect(mockRes.status).toHaveBeenCalledWith(200);  
+            expect(mockRes.send).toHaveBeenCalledWith({ message: "Employee Deleted" });  
         });
 
         it("should handle errors in deleteEmployee", async () => {
             const mockError = new Error("Error deleting employee");
-            (employeeService.serviceDeleteEmployee as jest.Mock).mockRejectedValue(mockError);  // Mock error
+            (employeeService.serviceDeleteEmployee as jest.Mock).mockRejectedValue(mockError);  
 
             await employeeController.controllerDeleteEmployees(
                 mockReq as Request,
@@ -176,7 +175,7 @@ describe("Employee Controller", () => {
                 mockNext
             );
 
-            expect(mockNext).toHaveBeenCalledWith(mockError);  // Ensure the error is passed to next middleware
+            expect(mockNext).toHaveBeenCalledWith(mockError);  
         });
     });
 });

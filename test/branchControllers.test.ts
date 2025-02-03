@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import * as branchController from "../src/api/v1/controllers/branchController"; 
 import * as branchService from "../src/api/v1/services/branchService"; 
 
-// Mock the service module
+
 jest.mock('../src/api/v1/services/branchService', () => ({
     serviceGetAllBranches: jest.fn(),
     serviceCreateBranches: jest.fn(),
@@ -17,23 +17,23 @@ describe('Branches Controller', () => {
   let mockNext: NextFunction;
 
   beforeEach(() => {
-    jest.clearAllMocks(); // Clear mocks before each test
+    jest.clearAllMocks(); 
     mockReq = {
       params: {},
       body: {},
       query: {},
     };
     mockRes = {
-      status: jest.fn().mockReturnThis(), // Mock the status method for chainable calls
-      json: jest.fn(), // Mock json response
-      send: jest.fn(), // Mock send response
+      status: jest.fn().mockReturnThis(), 
+      json: jest.fn(), 
+      send: jest.fn(), 
     };
-    mockNext = jest.fn(); // Mock next middleware function
+    mockNext = jest.fn(); 
   });
 
   describe('GET /api/v1/branches', () => {
     it('should call getAllBranches controller', async () => {
-      // Arrange: mock the service method to return a successful response
+      
       const mockBranches = [
         { id: '1', name: 'Branch 1', address: '123 Street', phone: '1234567890' },
         { id: '2', name: 'Branch 2', address: '456 Avenue', phone: '0987654321' },
@@ -49,7 +49,7 @@ describe('Branches Controller', () => {
       expect(mockRes.json).toHaveBeenCalledWith({
         message: 'Branches Retrieved',
         data: mockBranches,
-      }); // Check if the correct response was sent
+      }); 
     });
 
     it('should handle errors in getAllBranches controller', async () => {

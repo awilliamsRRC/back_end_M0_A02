@@ -5,10 +5,6 @@ import employeeRoutes from "./api/v1/routes/employeeRoutes";
 import branchRoutes from "./api/v1/routes/branchRoutes";
 import setupSwagger from "../config/swagger";
 
-
-//import employeeRoutes from "./api/v1/routes/employeeRoutes";
-
-// Initialize the express application
 const app: Express = express();
 setupSwagger(app);
 
@@ -20,8 +16,6 @@ app.get("/",(req:Request,res:Response) => {
 
 });
 
-
-
 app.get("/api/v1/health", (req:Request,res:Response) => {
     res.json({
         status: "OK",
@@ -32,7 +26,6 @@ app.get("/api/v1/health", (req:Request,res:Response) => {
     });
 });
 
-// For any request that starts with /api/v1/employees, route it to the employeeRoutes module.
 app.use("/api/v1/employees", employeeRoutes);
 app.use("/api/v1/branches", branchRoutes);
 export default app;

@@ -51,7 +51,7 @@ describe("Employee Routes", () => {
                 department: "Engineering"
             };
 
-            const mockId = 1;  // Mock employee ID
+            const mockId = 1;  
             await request(app).put(`/api/v1/employees/${mockId}`).send(mockEmployee);
             expect(controllerUpdateEmployees).toHaveBeenCalled();
         });

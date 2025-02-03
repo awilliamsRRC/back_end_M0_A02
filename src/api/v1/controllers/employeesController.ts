@@ -38,7 +38,7 @@ export const controllerUpdateEmployees = async (
     next: NextFunction
 ): Promise<void> => {
     try {
-        // call the itemService by passing the id from thge url path and the body of the request
+        
         const updatedEmployee: Employee = await employeesService.serviceUpdateEmployee(
             req.params.id,
             req.body

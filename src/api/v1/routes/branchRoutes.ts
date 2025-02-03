@@ -1,6 +1,5 @@
 import express, { Router } from "express";
 import * as branchController from "../controllers/branchController";
-// import setupSwagger from "../../../../config/swagger";
 const routerBranch: Router = express.Router();
 
 

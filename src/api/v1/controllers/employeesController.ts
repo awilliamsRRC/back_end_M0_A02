@@ -9,7 +9,7 @@ export const controllerGetAllEmployees = async (
 ): Promise<void> => {
     try{
         const employees: Employee[] = await employeesService.serviceGetAllEmployees();
-        res.status(200).json({message:"Employee Retrieved", data: employees});
+        res.status(200).json({message:"Employees Retrieved", data: employees});
     }catch (error){
         next(error);
     }
@@ -59,7 +59,7 @@ export const controllerDeleteEmployees = async (
         await employeesService.serviceDeleteEmployee(req.params.id);
 
        
-        res.status(200).json({ message: "Employee Deleted" });
+        res.status(200).send({ message: "Employee Deleted" });
     } catch (error) {
         next(error);
     }

@@ -34,7 +34,7 @@ app.get("/api/v1/health", (req:Request,res:Response) => {
 
 // For any request that starts with /api/v1/employees, route it to the employeeRoutes module.
 app.use("/api/v1/employees", employeeRoutes);
-app.use("/api/v1/branch", branchRoutes);
+app.use("/api/v1/branches", branchRoutes);
 export default app;
 
 

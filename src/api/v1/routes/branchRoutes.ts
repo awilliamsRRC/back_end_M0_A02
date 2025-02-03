@@ -32,7 +32,7 @@ const routerBranch: Router = express.Router();
  *       500:
  *         description: Internal server error
  */
-routerBranch.get("/branch", branchController.controllerGetAllBranches);
+routerBranch.get("/", branchController.controllerGetAllBranches);
 
 /**
  * @openapi
@@ -72,7 +72,7 @@ routerBranch.get("/branch", branchController.controllerGetAllBranches);
  *       500:
  *         description: Internal server error
  */
-routerBranch.post("/branch", branchController.controllerCreateBranches);
+routerBranch.post("/", branchController.controllerCreateBranches);
 
 /**
  * @openapi
@@ -110,7 +110,7 @@ routerBranch.post("/branch", branchController.controllerCreateBranches);
  *       500:
  *         description: Internal server error
  */
-routerBranch.put("/branch/:id", branchController.controllerUpdateBranches);
+routerBranch.put("/:id", branchController.controllerUpdateBranches);
 
 /**
  * @openapi
@@ -137,6 +137,6 @@ routerBranch.put("/branch/:id", branchController.controllerUpdateBranches);
  *       500:
  *         description: Internal server error
  */
-routerBranch.delete("/branch/:id", branchController.controllerDeleteBranches);
+routerBranch.delete("/:id", branchController.controllerDeleteBranches);
 
 export default routerBranch;

@@ -35,7 +35,7 @@ const routerEmployee: Router = express.Router();
  *       500:
  *         description: Internal server error
  */
-routerEmployee.get("/employees", employeesController.controllerGetAllEmployees);
+routerEmployee.get("/", employeesController.controllerGetAllEmployees);
 
 /**
  * @openapi
@@ -83,7 +83,7 @@ routerEmployee.get("/employees", employeesController.controllerGetAllEmployees);
  *       500:
  *         description: Internal server error
  */
-routerEmployee.post("/employees", employeesController.controllerCreateEmployees);
+routerEmployee.post("/", employeesController.controllerCreateEmployees);
 
 /**
  * @openapi
@@ -125,7 +125,7 @@ routerEmployee.post("/employees", employeesController.controllerCreateEmployees)
  *       500:
  *         description: Internal server error
  */
-routerEmployee.put("/employees/:id", employeesController.controllerUpdateEmployees);
+routerEmployee.put("/:id", employeesController.controllerUpdateEmployees);
 
 /**
  * @openapi
@@ -152,6 +152,6 @@ routerEmployee.put("/employees/:id", employeesController.controllerUpdateEmploye
  *       500:
  *         description: Internal server error
  */
-routerEmployee.delete("/emplpoyees/:id", employeesController.controllerDeleteEmployees);
+routerEmployee.delete("/:id", employeesController.controllerDeleteEmployees);
 
 export default routerEmployee;

@@ -17,8 +17,9 @@
         "baseUrl": "./",
         "paths": {
             "*": ["*"]
-        }
+        },
+        "sourceMap": true
     },
-    "include": ["src/**/*", "test/**/*", "test", "config"],
+    "include": ["src/**/*", "test/**/*", "config/**/*"],
     "exclude": ["node_modules", "dist"]
 }

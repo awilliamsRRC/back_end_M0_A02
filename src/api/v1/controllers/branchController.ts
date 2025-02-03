@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import * as branchService from "../services/branchService";
 import type { Branch } from "../services/branchService";
 
+
 export const controllerGetAllBranches = async (
     req: Request,
     res: Response,
